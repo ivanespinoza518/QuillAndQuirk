@@ -11,6 +11,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.grey[300],
       body: Center(
         child: Column(
           children: [
