@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -13,13 +14,9 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Logo
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Image.asset(
-                'lib/images/Quill-With-Ink.png',
-                height: 240,
-              ),
-            ),
+            const Padding(
+                padding: EdgeInsets.all(25.0),
+                child: Icon(FontAwesomeIcons.feather)),
 
             const SizedBox(height: 48), // Empty space
 
