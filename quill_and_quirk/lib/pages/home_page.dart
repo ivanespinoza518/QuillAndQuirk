@@ -33,16 +33,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
+
+      // Bottom Nav Bar
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
+
+      // Top App Bar
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
+            icon: const Padding(
+              padding: EdgeInsets.only(left: 12.0),
+              child: Icon(Icons.menu, color: Colors.black),
+            ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -54,54 +61,92 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         backgroundColor: Colors.white,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DrawerHeader(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Quirk',
-                    style: TextStyle(
-                        color: Colors.green[900],
-                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                        fontSize: 40.0),
+            Column(
+              children: [
+                DrawerHeader(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Quirk',
+                        style: TextStyle(
+                            color: Colors.green[900],
+                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                            fontSize: 40.0),
+                      ),
+                      Text(
+                        ' & ',
+                        style: TextStyle(
+                            color: Colors.yellow[600],
+                            height: 1.5,
+                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                            fontSize: 30.0),
+                      ),
+                      Text(
+                        'Quill',
+                        style: TextStyle(
+                            color: Colors.green[900],
+                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                            fontSize: 40.0),
+                      ),
+                    ],
                   ),
-                  Text(
-                    ' & ',
-                    style: TextStyle(
-                        color: Colors.yellow[600],
-                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                        fontSize: 30.0),
+                ),
+
+                // Divider
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Divider(color: Colors.grey[800]),
+                ),
+
+                // Title list
+                const Padding(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Home',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                  Text(
-                    'Quill',
-                    style: TextStyle(
-                        color: Colors.green[900],
-                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                        fontSize: 40.0),
+                ),
+
+                // Title list
+                const Padding(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'About',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Divider(color: Colors.grey[800]),
+                ),
+              ],
             ),
 
             // Title list
             const Padding(
-              padding: EdgeInsets.only(left: 5.0),
+              padding: EdgeInsets.only(left: 5.0, bottom: 25.0),
               child: ListTile(
                 leading: Icon(
-                  Icons.home,
+                  Icons.logout,
                   color: Colors.black,
                 ),
                 title: Text(
-                  'Home',
+                  'Logout',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

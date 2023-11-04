@@ -6,5 +6,5 @@ class Category {
   final Color bgColor;
   final Color txtColor;
 
-  Category(this.name, this.bgColor, this.txtColor);
+  Category({required this.name, required this.bgColor, required this.txtColor});
 }
