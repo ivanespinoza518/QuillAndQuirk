@@ -40,11 +40,14 @@ class _ShopPageState extends State<ShopPage> {
         ),
 
         // message
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 25.0),
           child: Text(
             'Welcome Back!',
-            style: TextStyle(color: Colors.grey[600]),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
         ),
 
