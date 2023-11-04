@@ -39,6 +39,7 @@ dependencies:
   unicons: ^2.1.1
   google_nav_bar: ^5.0.6
   google_fonts: ^6.1.0
+  books_finder: ^4.4.0
 
 dev_dependencies:
   flutter_test:
