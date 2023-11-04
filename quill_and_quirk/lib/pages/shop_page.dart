@@ -52,8 +52,8 @@ class _ShopPageState extends State<ShopPage> {
         ),
 
         // popular books
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -62,15 +62,14 @@ class _ShopPageState extends State<ShopPage> {
                 'Popular Books',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 18, 63, 21),
+                  color: Colors.green[900],
                   fontSize: 24,
                 ),
               ),
               Text(
                 'See all',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 18, 63, 21)),
+                    fontWeight: FontWeight.bold, color: Colors.green[900]),
               )
             ],
           ),

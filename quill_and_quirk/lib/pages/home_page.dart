@@ -55,6 +55,33 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
+        title: Row(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Quirk',
+              style: TextStyle(
+                  color: Colors.green[900],
+                  fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                  fontSize: 24.0),
+            ),
+            Text(
+              ' & ',
+              style: TextStyle(
+                  color: Colors.yellow[600],
+                  height: 1.5,
+                  fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                  fontSize: 18.0),
+            ),
+            Text(
+              'Quill',
+              style: TextStyle(
+                  color: Colors.green[900],
+                  fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                  fontSize: 24.0),
+            ),
+          ],
+        ),
       ),
 
       // Hamburger slide out menu
@@ -65,33 +92,18 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(
               children: [
-                DrawerHeader(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Quirk',
-                        style: TextStyle(
-                            color: Colors.green[900],
-                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                            fontSize: 40.0),
+                SizedBox(
+                  height: 100,
+                  child: DrawerHeader(
+                    child: Text(
+                      'Categories',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        ' & ',
-                        style: TextStyle(
-                            color: Colors.yellow[600],
-                            height: 1.5,
-                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                            fontSize: 30.0),
-                      ),
-                      Text(
-                        'Quill',
-                        style: TextStyle(
-                            color: Colors.green[900],
-                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                            fontSize: 40.0),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
 
@@ -101,31 +113,61 @@ class _HomePageState extends State<HomePage> {
                   child: Divider(color: Colors.grey[800]),
                 ),
 
-                // Title list
-                const Padding(
-                  padding: EdgeInsets.only(left: 5.0),
+                // Fiction Category
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
                   child: ListTile(
                     leading: Icon(
-                      Icons.home,
-                      color: Colors.black,
+                      Icons.book,
+                      color: Colors.green[900],
                     ),
-                    title: Text(
-                      'Home',
+                    title: const Text(
+                      'Fiction',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
 
-                // Title list
-                const Padding(
-                  padding: EdgeInsets.only(left: 5.0),
+                // Nonfiction Category
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
                   child: ListTile(
                     leading: Icon(
-                      Icons.info,
-                      color: Colors.black,
+                      Icons.book,
+                      color: Colors.green[900],
                     ),
-                    title: Text(
-                      'About',
+                    title: const Text(
+                      'Nonfiction',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+
+                // Biography Category
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.book,
+                      color: Colors.green[900],
+                    ),
+                    title: const Text(
+                      'Biography',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+
+                // Fantasy/Scifi Category
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.book,
+                      color: Colors.green[900],
+                    ),
+                    title: const Text(
+                      'Fantasy / Scifi',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
@@ -133,7 +175,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
 
-            // Title list
+            // Logout
             const Padding(
               padding: EdgeInsets.only(left: 5.0, bottom: 25.0),
               child: ListTile(

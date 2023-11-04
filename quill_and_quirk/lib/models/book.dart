@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:quill_and_quirk/models/category.dart';
 
 /// model for book
