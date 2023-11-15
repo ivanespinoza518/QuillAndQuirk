@@ -19,7 +19,7 @@ class Cart extends ChangeNotifier {
     ),
     Book(
       title: 'Iron Flame',
-      author: 'author',
+      author: 'Rebecca Barros',
       price: 22.99,
       image: 'lib/images/IronFlame.png',
       category: Category(
@@ -55,6 +55,9 @@ class Cart extends ChangeNotifier {
   // list of items in user cart
   List<Book> userCart = [];
 
+  // subtotal before taxes
+  double subtotal = 0.0;
+
   // get list of books for sale
   List<Book> getBookList() {
     return bookStore;
@@ -65,15 +68,25 @@ class Cart extends ChangeNotifier {
     return userCart;
   }
 
+  double getSubtotal() {
+    return subtotal;
+  }
+
+  double getTaxes() {
+    return subtotal * .10;
+  }
+
   // add items to cart
   void addItemToCart(Book book) {
     userCart.add(book);
+    subtotal += book.price;
     notifyListeners();
   }
 
   // remove item from cart
   void removeItemFromCart(Book book) {
     userCart.remove(book);
+    subtotal -= book.price;
     notifyListeners();
   }
 }

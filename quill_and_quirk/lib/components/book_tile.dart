@@ -85,7 +85,7 @@ class BookTile extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: Colors.green[900],
+                      color: const Color.fromARGB(255, 53, 94, 43),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     height: 50,

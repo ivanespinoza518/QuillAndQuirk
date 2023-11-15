@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -26,6 +27,14 @@ class BottomNavBar extends StatelessWidget {
           GButton(
             icon: Icons.shopping_bag_rounded,
             text: 'Cart',
+          ),
+          GButton(
+            icon: CupertinoIcons.heart,
+            text: 'Saved',
+          ),
+          GButton(
+            icon: CupertinoIcons.profile_circled,
+            text: 'Account',
           ),
         ],
       ),

@@ -26,15 +26,22 @@ class _CartItemState extends State<CartItem> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(8),
+        border: const Border(
+          bottom: BorderSide(
+            color: Colors.black,
+            width: 0.5,
+          ),
+        ),
       ),
-      margin: const EdgeInsets.only(bottom: 5),
       child: ListTile(
         leading: Image.asset(widget.book.image),
         title: Text(widget.book.title),
         subtitle: Text('\$${widget.book.price}'),
         trailing: IconButton(
-          icon: Icon(Icons.delete),
+          icon: const Icon(
+            Icons.delete,
+            color: Colors.amber,
+          ),
           onPressed: removeItemFromCart,
         ),
       ),

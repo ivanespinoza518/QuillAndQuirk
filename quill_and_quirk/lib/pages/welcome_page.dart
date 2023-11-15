@@ -51,19 +51,22 @@ class WelcomePage extends StatelessWidget {
                   builder: (context) => const HomePage(),
                 ),
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.green[900],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(25),
-                child: const Center(
-                  child: Text(
-                    "Let's Go!",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 53, 94, 43),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.all(25),
+                  child: const Center(
+                    child: Text(
+                      "Let's Go!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
