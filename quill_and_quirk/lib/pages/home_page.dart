@@ -1,9 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:quill_and_quirk/components/bottom_nav.dart';
 import 'package:quill_and_quirk/pages/account_page.dart';
-import 'package:quill_and_quirk/pages/checkout_page.dart';
 import 'package:quill_and_quirk/pages/saved_page.dart';
 import 'package:quill_and_quirk/pages/shop_page.dart';
 import 'package:quill_and_quirk/pages/cart_page.dart';
@@ -35,11 +35,8 @@ class _HomePageState extends State<HomePage> {
     // saved for later page
     const SavedPage(),
 
-    // // profile page
-    // const AccountPage(),
-
-    // checkout page
-    const CheckoutPage(),
+    // profile page
+    const AccountPage(),
   ];
 
   @override
@@ -72,49 +69,52 @@ class _HomePageState extends State<HomePage> {
 
         // Bookstore logo
         // todo: need to make it into a button to home
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Quirk',
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 53, 94, 43),
-                      fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                      fontSize: 24.0,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 70.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Quirk',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 53, 94, 43),
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 24.0,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: ' & ',
-                    style: TextStyle(
-                      color: Colors.amber,
-                      height: 1.5,
-                      fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                      fontSize: 18.0,
+                    TextSpan(
+                      text: ' & ',
+                      style: TextStyle(
+                        color: Colors.amber,
+                        height: 1.5,
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 18.0,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Quill',
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 53, 94, 43),
-                      fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                      fontSize: 24.0,
+                    TextSpan(
+                      text: 'Quill',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 53, 94, 43),
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 24.0,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            // Profile Icon
-            // todo: Need to make it into a button
-            Icon(
-              Icons.account_circle_outlined,
-              color: Colors.grey.shade800,
-              size: 30.0,
-            ),
-          ],
+              // Profile Icon
+              // todo: Need to make it into a button
+              Icon(
+                CupertinoIcons.profile_circled,
+                color: Colors.grey.shade700,
+                size: 28.0,
+              ),
+            ],
+          ),
         ),
       ),
 

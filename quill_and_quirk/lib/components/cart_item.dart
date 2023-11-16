@@ -24,9 +24,9 @@ class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        border: const Border(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
           bottom: BorderSide(
             color: Colors.black,
             width: 0.5,

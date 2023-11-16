@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:quill_and_quirk/components/cart_item.dart';
+import 'package:quill_and_quirk/components/checkout_menu.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
-import 'package:quill_and_quirk/pages/checkout_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -15,19 +15,66 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  void _showCheckoutMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return const CheckoutMenu();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder: (context, value, child) => Column(
         children: [
           // Shopping cart heading (maybe make into a switch)
-          const Text(
-            'Shopping Cart',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          Row(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width / 2,
+                height: 35,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.black,
+                      width: 2.5,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  'Shopping Cart',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width / 2,
+                height: 35,
+                color: Colors.white,
+                child: Text(
+                  'Saved List',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+              ),
+            ],
           ),
 
           // space
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
 
           // Cart items
           Expanded(
@@ -45,12 +92,9 @@ class _CartPageState extends State<CartPage> {
 
           // Checkout button
           GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CheckoutPage(),
-              ),
-            ),
+            onTap: () {
+              _showCheckoutMenu(context);
+            },
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
               child: Container(
@@ -89,88 +133,6 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
           ),
-
-          // // Maybe this should go in the checkout page
-          // // Costs
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-          //   child: Column(
-          //     children: [
-          //       // Subtotal
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text(
-          //             'Subtotal',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 18.0),
-          //           ),
-          //           Text(
-          //             '\$put price here',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 18.0),
-          //           ),
-          //         ],
-          //       ),
-
-          //       // Space
-          //       const SizedBox(height: 10),
-
-          //       // Estimated Tax
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text(
-          //             'Estimated Tax',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 18.0),
-          //           ),
-          //           Text(
-          //             '\$put price here',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 18.0),
-          //           ),
-          //         ],
-          //       ),
-
-          //       // space with divider
-          //       Divider(
-          //         height: 20,
-          //         thickness: 0.8,
-          //         color: Colors.grey[800],
-          //       ),
-
-          //       // Total
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text(
-          //             'Estimated total',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 21.0),
-          //           ),
-          //           Text(
-          //             '\$put price here',
-          //             style: TextStyle(
-          //                 color: Colors.grey[800],
-          //                 fontFamily: GoogleFonts.crimsonPro().fontFamily,
-          //                 fontSize: 21.0),
-          //           ),
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );
