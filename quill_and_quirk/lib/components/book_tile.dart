@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../models/book.dart';
@@ -24,7 +25,7 @@ class BookTile extends StatelessWidget {
           //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // book pic
-            Image.asset(
+            Image.network(
               book.image,
               height: 200,
             ),

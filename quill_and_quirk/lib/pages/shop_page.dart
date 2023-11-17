@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:quill_and_quirk/components/book_tile.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
+import 'search_page.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -33,7 +34,14 @@ class _ShopPageState extends State<ShopPage> {
       builder: (context, value, child) => Column(
         children: [
           // search bar
-          Container(
+          GestureDetector( 
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchPage(),
+                ),
+              ),
+          child: Container(
             padding: const EdgeInsets.all(12),
             margin: const EdgeInsets.symmetric(horizontal: 25),
             decoration: BoxDecoration(
@@ -54,6 +62,7 @@ class _ShopPageState extends State<ShopPage> {
               ],
             ),
           ),
+        ),
 
           // message
           const Padding(
