@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:quill_and_quirk/components/book_tile.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
-import 'search_page.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key});
+  final String savedText;
+
+  const ShopPage({Key? key, required this.savedText}) : super(key: key);
+  
+  //const ShopPage({super.key});
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -34,14 +37,7 @@ class _ShopPageState extends State<ShopPage> {
       builder: (context, value, child) => Column(
         children: [
           // search bar
-          GestureDetector( 
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SearchPage(),
-                ),
-              ),
-          child: Container(
+          Container(
             padding: const EdgeInsets.all(12),
             margin: const EdgeInsets.symmetric(horizontal: 25),
             decoration: BoxDecoration(
@@ -62,13 +58,12 @@ class _ShopPageState extends State<ShopPage> {
               ],
             ),
           ),
-        ),
 
           // message
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 25.0),
             child: Text(
-              'Welcome Back!',
+              'Welcome Back, ${widget.savedText}!',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,

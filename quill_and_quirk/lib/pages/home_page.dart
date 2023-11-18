@@ -9,7 +9,11 @@ import 'package:quill_and_quirk/pages/shop_page.dart';
 import 'package:quill_and_quirk/pages/cart_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String savedText;
+
+  const HomePage({Key? key, required this.savedText}) : super(key: key);
+
+  //const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,9 +29,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   // pages to display
-  final List<Widget> _pages = [
+  List<Widget> _buildPages() {
+    return [
     // shop page
-    const ShopPage(),
+    ShopPage(savedText: widget.savedText),
 
     // cart page
     const CartPage(),
@@ -36,11 +41,13 @@ class _HomePageState extends State<HomePage> {
     const SavedPage(),
 
     // profile page
-    const AccountPage(),
-  ];
+    AccountPage(savedText: widget.savedText),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _pages = _buildPages();
     return Scaffold(
       backgroundColor: Colors.grey[200],
 
