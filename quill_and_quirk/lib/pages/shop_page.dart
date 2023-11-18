@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'search_page.dart';
 
 import 'package:quill_and_quirk/components/book_tile.dart';
 import 'package:quill_and_quirk/models/book.dart';
@@ -9,7 +10,7 @@ class ShopPage extends StatefulWidget {
   final String savedText;
 
   const ShopPage({Key? key, required this.savedText}) : super(key: key);
-  
+
   //const ShopPage({super.key});
 
   @override
@@ -37,25 +38,33 @@ class _ShopPageState extends State<ShopPage> {
       builder: (context, value, child) => Column(
         children: [
           // search bar
-          Container(
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(8),
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SearchPage(),
+              ),
             ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Search',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                ),
-              ],
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Search',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
             ),
           ),
 
