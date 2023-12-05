@@ -34,7 +34,7 @@ class _CartItemState extends State<CartItem> {
         ),
       ),
       child: ListTile(
-        leading: Image.asset(widget.book.image),
+        leading: Image.network(widget.book.image),
         title: Text(widget.book.title),
         subtitle: Text('\$${widget.book.price}'),
         trailing: IconButton(
