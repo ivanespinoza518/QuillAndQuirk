@@ -5,13 +5,20 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  Icon icon = Icon(Icons.search);
-  Widget widgetSearch = Text('Search', style: TextStyle(color: Colors.grey));
+  Icon icon = const Icon(Icons.search);
+  Widget widgetSearch = const Text(
+    'Search',
+    style: TextStyle(
+      color: Colors.grey,
+    ),
+  );
   String result = '';
   List<Book> books = List<Book>.empty();
 
@@ -20,25 +27,25 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.grey,
           ),
           title: widgetSearch,
           actions: [
             IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: () {
                 setState(() {
                   if (icon.icon == Icons.search) {
-                    icon = Icon(Icons.cancel);
+                    icon = const Icon(Icons.cancel);
                     widgetSearch = TextField(
                       textInputAction: TextInputAction.search,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       onSubmitted: (t) => bookSearch(t),
                     );
                   } else {
                     setState(() {
-                      widgetSearch = Text(
+                      widgetSearch = const Text(
                         'Search',
                         style: TextStyle(color: Colors.grey),
                       );
@@ -50,7 +57,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
         body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
@@ -87,7 +94,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future bookSearch(String text) async {
-    final String url = 'https://www.googleapis.com/books/v1/volumes?q=' + text;
+    final String url = 'https://www.googleapis.com/books/v1/volumes?q=$text';
 
     try {
       http.get(Uri.parse(url)).then((res) {
