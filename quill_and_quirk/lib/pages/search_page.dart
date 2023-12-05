@@ -4,18 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
-
 class SearchPage extends StatefulWidget {
   @override
-   State<SearchPage> createState() => _SearchPageState();
+  State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
   Icon icon = Icon(Icons.search);
-  Widget widgetSearch = Text(
-    'Search',
-    style: TextStyle(color: Colors.grey)
-    );
+  Widget widgetSearch = Text('Search', style: TextStyle(color: Colors.grey));
   String result = '';
   List<Book> books = List<Book>.empty();
 
@@ -70,15 +66,17 @@ class _SearchPageState extends State<SearchPage> {
               child: Column(
                 children: [
                   Expanded(
-                    child: Image.network(books[pos].image),
+                    child: books[pos].image == ''
+                        ? Image.asset('lib/images/image-not-found.jpeg')
+                        : Image.network(books[pos].image),
                   ),
-                    const SizedBox(height: 10),
-                    Text(books[pos].title),
-                    //subtitle for authors here, etc
+                  const SizedBox(height: 10),
+                  Text(books[pos].title),
+                  //subtitle for authors here, etc
                 ],
               ),
-                    // to change to book info page
-                    /*onTap: () {
+              // to change to book info page
+              /*onTap: () {
                       MaterialPageRoute route = MaterialPageRoute(
                           builder: (_) => BookPage(books[pos]));
                       Navigator.push(context, route);
@@ -107,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     setState(() {
-      result= 'Loading...';
+      result = 'Loading...';
     });
   }
 }

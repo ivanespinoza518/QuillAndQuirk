@@ -9,14 +9,16 @@ class Book {
   late String image;
   late String category;
 
-  Book(this.title,
-      this.author,
-      this.description,
-      this.price,
-      this.image,
-      this.category);
+  Book(
+    this.title,
+    this.author,
+    this.description,
+    this.price,
+    this.image,
+    this.category,
+  );
 
-    Book.fromMap(Map<String, dynamic> map) {
+  Book.fromMap(Map<String, dynamic> map) {
     //id = map['id'];
     title = map['volumeInfo']['title'];
     author = (map['volumeInfo']['authors'] == null)
@@ -34,10 +36,9 @@ class Book {
         : map['volumeInfo']['categories'].toString();
 
     try {
-      image =
-          (map['volumeInfo']['imageLinks']['smallThumbnail'] == null)
-              ? ''
-              : map['volumeInfo']['imageLinks']['smallThumbnail'].toString();
+      image = (map['volumeInfo']['imageLinks']['smallThumbnail'] == null)
+          ? ''
+          : map['volumeInfo']['imageLinks']['smallThumbnail'].toString();
     } catch (err) {
       image = '';
     }
