@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:quill_and_quirk/pages/product_page.dart';
+
 class SearchPage extends StatefulWidget {
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -57,30 +59,31 @@ class _SearchPageState extends State<SearchPage> {
           ),
           itemCount: books.length,
           itemBuilder: ((BuildContext ctx, int pos) {
-            return Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
+            return GestureDetector(
+              onTap: () {
+                MaterialPageRoute route = MaterialPageRoute(
+                    builder: (_) => ProductPage(book: books[pos]));
+                Navigator.push(context, route);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: books[pos].image == ''
+                          ? Image.asset('lib/images/image-not-found.jpeg')
+                          : Image.network(books[pos].image),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(books[pos].title),
+                    //subtitle for authors here, etc
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: books[pos].image == ''
-                        ? Image.asset('lib/images/image-not-found.jpeg')
-                        : Image.network(books[pos].image),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(books[pos].title),
-                  //subtitle for authors here, etc
-                ],
-              ),
-              // to change to book info page
-              /*onTap: () {
-                      MaterialPageRoute route = MaterialPageRoute(
-                          builder: (_) => BookPage(books[pos]));
-                      Navigator.push(context, route);
-                    }, */
             );
           }),
         ));
