@@ -2,49 +2,48 @@ import 'package:flutter/material.dart';
 
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:http/http.dart' as http;
-import 'package:quill_and_quirk/models/category.dart';
 
 class Cart extends ChangeNotifier {
   // list of books for sale
   //temporary replacement for previous list, category needs to be fixed for this
-  List<Book> bookStore = [
-    Book(
-      '1',
-      'Basics with Babish',
-      'Andrea Rea',
-      '',
-      15.99,
-      'http://books.google.com/books/content?id=GRSsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-      'Cooking',
-    ),
-    Book(
-      '2',
-      'Iron Flame',
-      'Rebecca Yarros',
-      '',
-      22.99,
-      'http://books.google.com/books/content?id=xIS9EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-      'Fantasy',
-    ),
-    Book(
-      '3',
-      'Sword Catcher',
-      'Cassandra Claire',
-      '',
-      24.99,
-      'http://books.google.com/books/content?id=BfyiEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-      'Fantasy',
-    ),
-    Book(
-      '4',
-      'The Way of Kings',
-      'Brandon Sanderson',
-      '',
-      24.99,
-      'http://books.google.com/books/content?id=QVn-CgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
-      'Fantasy',
-    ),
-  ];
+  // List<Book> bookStore = [
+  //   Book(
+  //     '1',
+  //     'Basics with Babish',
+  //     'Andrea Rea',
+  //     '',
+  //     15.99,
+  //     'http://books.google.com/books/content?id=GRSsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  //     'Cooking',
+  //   ),
+  //   Book(
+  //     '2',
+  //     'Iron Flame',
+  //     'Rebecca Yarros',
+  //     '',
+  //     22.99,
+  //     'http://books.google.com/books/content?id=xIS9EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  //     'Fantasy',
+  //   ),
+  //   Book(
+  //     '3',
+  //     'Sword Catcher',
+  //     'Cassandra Claire',
+  //     '',
+  //     24.99,
+  //     'http://books.google.com/books/content?id=BfyiEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+  //     'Fantasy',
+  //   ),
+  //   Book(
+  //     '4',
+  //     'The Way of Kings',
+  //     'Brandon Sanderson',
+  //     '',
+  //     24.99,
+  //     'http://books.google.com/books/content?id=QVn-CgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  //     'Fantasy',
+  //   ),
+  // ];
   /*List<Book> bookStore = [
     Book(
       title: 'Basics with Babish',
@@ -99,9 +98,9 @@ class Cart extends ChangeNotifier {
   double subtotal = 0.0;
 
   // get list of books for sale
-  List<Book> getBookList() {
-    return bookStore;
-  }
+  // List<Book> getBookList() {
+  //   return bookStore;
+  // }
 
   // get cart
   List<Book> getUserCart() {

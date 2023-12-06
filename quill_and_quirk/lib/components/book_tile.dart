@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:quill_and_quirk/components/book_info.dart';
 
 import '../models/book.dart';
 
 class BookTile extends StatelessWidget {
-  Book book;
-  void Function()? onTap;
-  BookTile({super.key, required this.book, required this.onTap});
+  final Book book;
+  final void Function()? onTap;
+  const BookTile({super.key, required this.book, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 25),
-      width: 250,
+      width: 260,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -23,7 +23,6 @@ class BookTile extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // book pic
             Image.network(

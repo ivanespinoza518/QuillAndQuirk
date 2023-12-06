@@ -21,25 +21,33 @@ class BookInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: GoogleFonts.crimsonPro().fontFamily,
-            fontSize: fontSize,
+        SizedBox(
+          width: 170,
+          child: Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: GoogleFonts.crimsonPro().fontFamily,
+              fontSize: fontSize,
+            ),
           ),
         ),
-        Text(
-          author,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: Colors.black54,
-            fontFamily: GoogleFonts.crimsonPro().fontFamily,
-            fontSize: fontSize * .75,
+        SizedBox(
+          width: 170,
+          child: Text(
+            author,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.black54,
+              fontFamily: GoogleFonts.crimsonPro().fontFamily,
+              fontSize: fontSize * .75,
+            ),
           ),
         ),
-        gapH12,
+        gapH8,
         Text(
           '\$$price',
           style: TextStyle(

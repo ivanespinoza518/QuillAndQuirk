@@ -1,5 +1,3 @@
-//import 'package:quill_and_quirk/models/category.dart';
-
 /// model for book
 class Book {
   late String id;
@@ -41,6 +39,29 @@ class Book {
       image = (map['volumeInfo']['imageLinks']['smallThumbnail'] == null)
           ? ''
           : map['volumeInfo']['imageLinks']['smallThumbnail'].toString();
+    } catch (err) {
+      image = '';
+    }
+  }
+
+  Book.mapSingleBook(Map<String, dynamic> map) {
+    id = map['id'] ?? '';
+    title = map['title'] ?? '';
+    author = (map['authors'] as List<dynamic>?)
+            ?.map((dynamic author) => author.toString())
+            .join(', ') ??
+        '';
+    description = map['description'] ?? '';
+    price = 15.99;
+    category = (map['categories'] as List<dynamic>?)
+            ?.map((dynamic category) => category.toString())
+            .join(', ') ??
+        '';
+
+    try {
+      image = (map['imageLinks']?['smallThumbnail'] == null)
+          ? ''
+          : map['imageLinks']!['smallThumbnail'].toString();
     } catch (err) {
       image = '';
     }

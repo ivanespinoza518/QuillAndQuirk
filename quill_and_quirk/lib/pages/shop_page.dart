@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quill_and_quirk/constants/app_sizes.dart';
+import 'package:quill_and_quirk/models/top_ten_books.dart';
 import 'search_page.dart';
 
 import 'package:quill_and_quirk/components/book_tile.dart';
@@ -13,13 +14,24 @@ class ShopPage extends StatefulWidget {
 
   const ShopPage({Key? key, required this.savedText}) : super(key: key);
 
-  //const ShopPage({super.key});
-
   @override
   State<ShopPage> createState() => _ShopPageState();
 }
 
 class _ShopPageState extends State<ShopPage> {
+  TopTenBooks topTenBooks = TopTenBooks();
+  late Future<void> initializeTopTenBooksFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeTopTenBooksFuture = initializeTopTenBooks();
+  }
+
+  Future<void> initializeTopTenBooks() async {
+    await topTenBooks.initializeTopTen();
+  }
+
   // add shoe to cart
   void addBookToCart(Book book) {
     Provider.of<Cart>(context, listen: false).addItemToCart(book);
@@ -84,28 +96,20 @@ class _ShopPageState extends State<ShopPage> {
           ),
 
           // popular books
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Top 10 lBooks',
+                  'Top 10 Books',
                   style: TextStyle(
-                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
                     fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 53, 94, 43),
                     fontSize: 24,
-                    color: const Color.fromARGB(255, 53, 94, 43),
                   ),
                 ),
-                // Text(
-                //   'See all',
-                //   style: TextStyle(
-                //     fontWeight: FontWeight.bold,
-                //     color: Color.fromARGB(255, 53, 94, 43),
-                //   ),
-                // )
               ],
             ),
           ),
@@ -114,18 +118,33 @@ class _ShopPageState extends State<ShopPage> {
 
           // List of books
           Expanded(
-            child: ListView.builder(
-              itemCount: 4,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                // get a shoe from shop list
-                Book book = value.getBookList()[index];
+            child: FutureBuilder(
+              future: initializeTopTenBooksFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return ListView.builder(
+                    itemCount: topTenBooks.books.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      // get a shoe from shop list
+                      Book book = topTenBooks.books[index];
 
-                // return the book
-                return BookTile(
-                  book: book,
-                  onTap: () => addBookToCart(book),
-                );
+                      // return the book
+                      return BookTile(
+                        book: book,
+                        onTap: () => addBookToCart(book),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
               },
             ),
           ),
