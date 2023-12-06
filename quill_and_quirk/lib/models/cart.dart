@@ -9,6 +9,7 @@ class Cart extends ChangeNotifier {
   //temporary replacement for previous list, category needs to be fixed for this
   List<Book> bookStore = [
     Book(
+      '1',
       'Basics with Babish',
       'Andrea Rea',
       '',
@@ -17,6 +18,7 @@ class Cart extends ChangeNotifier {
       'Cooking',
     ),
     Book(
+      '2',
       'Iron Flame',
       'Rebecca Yarros',
       '',
@@ -25,6 +27,7 @@ class Cart extends ChangeNotifier {
       'Fantasy',
     ),
     Book(
+      '3',
       'Sword Catcher',
       'Cassandra Claire',
       '',
@@ -33,6 +36,7 @@ class Cart extends ChangeNotifier {
       'Fantasy',
     ),
     Book(
+      '4',
       'The Way of Kings',
       'Brandon Sanderson',
       '',
@@ -40,7 +44,6 @@ class Cart extends ChangeNotifier {
       'http://books.google.com/books/content?id=QVn-CgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
       'Fantasy',
     ),
-
   ];
   /*List<Book> bookStore = [
     Book(

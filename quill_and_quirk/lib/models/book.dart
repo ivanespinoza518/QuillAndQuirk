@@ -2,6 +2,7 @@
 
 /// model for book
 class Book {
+  late String id;
   late String title;
   late String author;
   late String description;
@@ -10,6 +11,7 @@ class Book {
   late String category;
 
   Book(
+    this.id,
     this.title,
     this.author,
     this.description,
@@ -19,7 +21,7 @@ class Book {
   );
 
   Book.fromMap(Map<String, dynamic> map) {
-    //id = map['id'];
+    id = map['id'];
     title = map['volumeInfo']['title'];
     author = (map['volumeInfo']['authors'] == null)
         ? ''

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:quill_and_quirk/constants/app_sizes.dart';
 import 'search_page.dart';
 
 import 'package:quill_and_quirk/components/book_tile.dart';
@@ -42,14 +44,14 @@ class _ShopPageState extends State<ShopPage> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SearchPage(),
+                builder: (context) => const SearchPage(),
               ),
             ),
             child: Container(
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.symmetric(horizontal: 25),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Row(
@@ -70,44 +72,47 @@ class _ShopPageState extends State<ShopPage> {
 
           // message
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 25.0),
+            padding: const EdgeInsets.symmetric(vertical: 25.0),
             child: Text(
               'Welcome Back, ${widget.savedText}!',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.crimsonPro().fontFamily,
                 color: Colors.black,
               ),
             ),
           ),
 
           // popular books
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Popular Books',
+                  'Top 10 lBooks',
                   style: TextStyle(
+                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 53, 94, 43),
                     fontSize: 24,
+                    color: const Color.fromARGB(255, 53, 94, 43),
                   ),
                 ),
-                Text(
-                  'See all',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 53, 94, 43),
-                  ),
-                )
+                // Text(
+                //   'See all',
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //     color: Color.fromARGB(255, 53, 94, 43),
+                //   ),
+                // )
               ],
             ),
           ),
 
-          const SizedBox(height: 10),
+          gapH12,
 
+          // List of books
           Expanded(
             child: ListView.builder(
               itemCount: 4,
@@ -125,14 +130,7 @@ class _ShopPageState extends State<ShopPage> {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.only(
-              top: 15.0,
-            ),
-            child: Divider(
-              color: Color.fromARGB(255, 189, 189, 189),
-            ),
-          )
+          gapH12,
         ],
       ),
     );

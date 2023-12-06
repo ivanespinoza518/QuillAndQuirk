@@ -43,6 +43,7 @@ dependencies:
   books_finder: ^4.4.0
   provider: ^6.1.1
   http: ^1.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

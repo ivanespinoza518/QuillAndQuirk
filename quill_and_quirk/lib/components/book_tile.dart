@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:quill_and_quirk/components/book_info.dart';
 
 import '../models/book.dart';
 
@@ -15,7 +16,7 @@ class BookTile extends StatelessWidget {
       margin: const EdgeInsets.only(left: 25),
       width: 250,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
@@ -37,46 +38,31 @@ class BookTile extends StatelessWidget {
                 Column(
                   children: [
                     // Book Title
-                    Text(book.title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16.0),
-                        overflow: TextOverflow.ellipsis),
-
-                    // Author
-                    Text('by ${book.author}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 10.0,
-                          color: Colors.grey,
-                        ),
-                        overflow: TextOverflow.ellipsis),
-
-                    // Price
-                    Text('\$${book.price}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12.0,
-                        ),
-                        overflow: TextOverflow.ellipsis),
+                    BookInfo(
+                      title: book.title,
+                      author: book.author,
+                      price: book.price,
+                      fontSize: 16.0,
+                    ),
 
                     const SizedBox(height: 5.0),
 
                     // Rating
-                    RatingBar.builder(
-                      initialRating: 3.5,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 10,
-                      ignoreGestures: true,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 0.5),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {},
-                    )
+                    // RatingBar.builder(
+                    //   initialRating: 3.5,
+                    //   minRating: 1,
+                    //   direction: Axis.horizontal,
+                    //   allowHalfRating: true,
+                    //   itemCount: 5,
+                    //   itemSize: 10,
+                    //   ignoreGestures: true,
+                    //   itemPadding: const EdgeInsets.symmetric(horizontal: 0.5),
+                    //   itemBuilder: (context, _) => const Icon(
+                    //     Icons.star,
+                    //     color: Colors.amber,
+                    //   ),
+                    //   onRatingUpdate: (rating) {},
+                    // )
                   ],
                 ),
 

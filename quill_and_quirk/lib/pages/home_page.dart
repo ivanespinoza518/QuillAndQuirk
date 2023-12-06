@@ -31,17 +31,17 @@ class _HomePageState extends State<HomePage> {
   // pages to display
   List<Widget> _buildPages() {
     return [
-    // shop page
-    ShopPage(savedText: widget.savedText),
+      // shop page
+      ShopPage(savedText: widget.savedText),
 
-    // cart page
-    const CartPage(),
+      // cart page
+      const CartPage(),
 
-    // saved for later page
-    const SavedPage(),
+      // saved for later page
+      const SavedPage(),
 
-    // profile page
-    AccountPage(savedText: widget.savedText),
+      // profile page
+      AccountPage(savedText: widget.savedText),
     ];
   }
 
@@ -115,11 +115,14 @@ class _HomePageState extends State<HomePage> {
 
               // Profile Icon
               // todo: Need to make it into a button
-              Icon(
-                CupertinoIcons.profile_circled,
-                color: Colors.grey.shade700,
-                size: 28.0,
-              ),
+              // GestureDetector(
+              //   onTap: () => navigateBottomBar(3),
+              //   child: Icon(
+              //     CupertinoIcons.profile_circled,
+              //     color: Colors.grey.shade700,
+              //     size: 28.0,
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -37,7 +37,7 @@ class CheckoutMenu extends StatelessWidget {
 
                     const Divider(
                       height: 1.0,
-                      thickness: 0.8,
+                      thickness: 1.0,
                       color: Colors.black,
                     ),
 
