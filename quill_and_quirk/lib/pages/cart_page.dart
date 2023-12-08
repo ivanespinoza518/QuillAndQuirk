@@ -26,6 +26,7 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Consumer<Cart>(
       builder: (context, value, child) => Column(
         children: [
@@ -34,7 +35,7 @@ class _CartPageState extends State<CartPage> {
             children: [
               Container(
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width / 2,
+                width: screenWidth / 2,
                 height: 35,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -57,7 +58,7 @@ class _CartPageState extends State<CartPage> {
               ),
               Container(
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width / 2,
+                width: screenWidth / 2,
                 height: 35,
                 color: Colors.white,
                 child: Text(
@@ -76,63 +77,85 @@ class _CartPageState extends State<CartPage> {
           // space
           const SizedBox(height: 5),
 
-          // Cart items
-          Expanded(
-            child: ListView.builder(
-              itemCount: value.getUserCart().length,
-              itemBuilder: (context, index) {
-                // Get individual book
-                Book individualBook = value.getUserCart()[index];
-
-                // return cart item
-                return CartItem(book: individualBook);
-              },
-            ),
-          ),
-
-          // Checkout button
-          GestureDetector(
-            onTap: () {
-              _showCheckoutMenu(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 53, 94, 43),
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(
-                        5.0,
-                        5.0,
+          // If cart is empty, display message
+          (value.getUserCart().isEmpty)
+              ? Expanded(
+                  child: Container(
+                    width: screenWidth,
+                    color: Colors.white,
+                    child: Center(
+                      child: Text(
+                        'Your shopping bag is empty!',
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                          fontSize: 18.0,
+                        ),
                       ),
-                      blurRadius: 10.0,
-                      spreadRadius: 2.0,
-                    ), //BoxShadow
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 0.0,
-                      spreadRadius: 0.0,
-                    ), //BoxShadow
-                  ],
-                ),
-                padding: const EdgeInsets.all(15),
-                child: Center(
-                  child: Text(
-                    "CHECKOUT",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                      fontSize: 21,
                     ),
                   ),
+                )
+              :
+
+              // Else, display Cart items
+              Expanded(
+                  child: ListView.builder(
+                    itemCount: value.getUserCart().length,
+                    itemBuilder: (context, index) {
+                      // Get individual book
+                      Book individualBook = value.getUserCart()[index];
+
+                      // return cart item
+                      return CartItem(book: individualBook);
+                    },
+                  ),
                 ),
-              ),
-            ),
-          ),
+
+          // If cart is not empty, display checkout button
+          // Checkout button
+          value.getUserCart().isNotEmpty
+              ? GestureDetector(
+                  onTap: () {
+                    _showCheckoutMenu(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 53, 94, 43),
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(
+                              5.0,
+                              5.0,
+                            ),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          ), //BoxShadow
+                          BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 0.0,
+                            spreadRadius: 0.0,
+                          ), //BoxShadow
+                        ],
+                      ),
+                      padding: const EdgeInsets.all(15),
+                      child: Center(
+                        child: Text(
+                          "CHECKOUT",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                            fontSize: 21,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

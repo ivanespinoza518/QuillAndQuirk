@@ -5,8 +5,7 @@ import 'package:quill_and_quirk/components/text_field.dart';
 import 'home_page.dart';
 
 class WelcomePage extends StatelessWidget {
-
-  TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
 
   WelcomePage({super.key});
 
@@ -26,10 +25,10 @@ class WelcomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(25.0),
                   child: Image.asset(
                     'lib/images/gold_quill.png',
-                     height: 240,
+                    height: 240,
                   ),
                 ),
-            
+
                 // Title
                 Text(
                   'Quirk & Quill Books',
@@ -41,9 +40,9 @@ class WelcomePage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-            
+
                 const SizedBox(height: 24), //Empty space
-            
+
                 // Subtitle
                 // const Text(
                 //   'Welcome!',
@@ -52,23 +51,21 @@ class WelcomePage extends StatelessWidget {
                 //   ),
                 //   textAlign: TextAlign.center,
                 // ),
-            
+
                 const SizedBox(height: 48), // Empty space
-            
+
                 // Username
                 MyTextField(
                   hintText: "Username",
                   obscureText: false,
                   controller: usernameController,
-                  
                 ),
-            
+
                 const SizedBox(height: 48), // Empty space
-            
+
                 // Sign in button
                 GestureDetector(
                   onTap: () {
-
                     String user = usernameController.text;
 
                     Navigator.push(

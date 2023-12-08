@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:quill_and_quirk/components/book_info.dart';
+import 'package:quill_and_quirk/components/book_rating.dart';
 
 import '../models/book.dart';
 
@@ -35,6 +35,7 @@ class BookTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Book Title
                     BookInfo(
@@ -43,25 +44,11 @@ class BookTile extends StatelessWidget {
                       price: book.price,
                       fontSize: 16.0,
                     ),
-
-                    const SizedBox(height: 5.0),
-
-                    // Rating
-                    // RatingBar.builder(
-                    //   initialRating: 3.5,
-                    //   minRating: 1,
-                    //   direction: Axis.horizontal,
-                    //   allowHalfRating: true,
-                    //   itemCount: 5,
-                    //   itemSize: 10,
-                    //   ignoreGestures: true,
-                    //   itemPadding: const EdgeInsets.symmetric(horizontal: 0.5),
-                    //   itemBuilder: (context, _) => const Icon(
-                    //     Icons.star,
-                    //     color: Colors.amber,
-                    //   ),
-                    //   onRatingUpdate: (rating) {},
-                    // )
+                    AverageBookRating(
+                      book: book,
+                      fontSize: 10.0,
+                    ),
+                    // const SizedBox(height: 5.0),
                   ],
                 ),
 
