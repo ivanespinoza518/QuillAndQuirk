@@ -32,7 +32,7 @@ class _ShopPageState extends State<ShopPage> {
     await topTenBooks.initializeTopTen();
   }
 
-  // add shoe to cart
+  // add book to cart
   void addBookToCart(Book book) {
     Provider.of<Cart>(context, listen: false).addItemToCart(book);
 
