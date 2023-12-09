@@ -12,7 +12,7 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: Text(
-        book.id,
+        "This is the product page",
         style: TextStyle(
           fontSize: 32.0,
           fontFamily: GoogleFonts.crimsonPro().fontFamily,
