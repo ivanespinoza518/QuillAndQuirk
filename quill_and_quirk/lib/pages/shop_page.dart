@@ -126,7 +126,7 @@ class _ShopPageState extends State<ShopPage> {
                     itemCount: topTenBooks.books.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      // get a shoe from shop list
+                      // get a book from shop list
                       Book book = topTenBooks.books[index];
 
                       // return the book
