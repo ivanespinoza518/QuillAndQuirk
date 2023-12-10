@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:quill_and_quirk/pages/welcome_page.dart';
 
 class AccountPage extends StatefulWidget {
   final String savedText;
@@ -13,7 +13,42 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems() {
+  return [
+    Item(
+      headerValue: "Email Address",
+      expandedValue: "booklover123@myemail.com",
+    ),
+    Item(
+      headerValue: "Shipping Address",
+      expandedValue: "123 Main St, Northridge, CA",
+    ),
+    Item(
+      headerValue: "Payment Methods",
+      expandedValue: "Debit Card ending in .... 5678",
+    ),
+    Item(
+      headerValue: "Past Orders",
+      expandedValue: "You have no past orders",
+    ),
+  ];
+}
+
 class _AccountPageState extends State<AccountPage> {
+  final List<Item> _data = generateItems();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,82 +108,67 @@ class _AccountPageState extends State<AccountPage> {
 
           const SizedBox(height: 48),
 
-          // order history
-          Text(
-            "Order History",
-            style: TextStyle(
-              //fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontFamily: GoogleFonts.crimsonPro().fontFamily,
-              fontSize: 20.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Icon(
-            CupertinoIcons.chevron_compact_down,
-              color: Colors.grey.shade700,
-              size: 28.0,
-            ),
+          _buildPanel(),
 
-          const SizedBox(height: 28),
+          const SizedBox(height: 48),
 
-          // email address
-          Text(
-            "Shipping Address",
-            style: TextStyle(
-              //fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontFamily: GoogleFonts.crimsonPro().fontFamily,
-              fontSize: 20.0,
+          // sign out button
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WelcomePage(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 53, 94, 43),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign Out",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          Icon(
-            CupertinoIcons.chevron_compact_down,
-              color: Colors.grey.shade700,
-              size: 28.0,
-            ),
-            
-          const SizedBox(height:28),
-
-          // payment methods
-          Text(
-            "Payment Methods",
-            style: TextStyle(
-              //fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontFamily: GoogleFonts.crimsonPro().fontFamily,
-              fontSize: 20.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Icon(
-            CupertinoIcons.chevron_compact_down,
-              color: Colors.grey.shade700,
-              size: 28.0,
-            ),
-
-          const SizedBox(height: 28),
-
-            // manage membership
-          Text(
-            "Manage Membership",
-            style: TextStyle(
-              //fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontFamily: GoogleFonts.crimsonPro().fontFamily,
-              fontSize: 20.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Icon(
-            CupertinoIcons.chevron_compact_down,
-              color: Colors.grey.shade700,
-              size: 28.0,
-            ),
-            
+          )
         ], // children
       ),
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+            title: Text(item.expandedValue),
+          ),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
