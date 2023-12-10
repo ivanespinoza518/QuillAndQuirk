@@ -8,32 +8,32 @@ import 'package:quill_and_quirk/constants/app_sizes.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
 
-class CartItem extends StatefulWidget {
+class SavedItem extends StatefulWidget {
   Book book;
-  CartItem({
+  SavedItem({
     super.key,
     required this.book,
   });
 
   @override
-  State<CartItem> createState() => _CartItemState();
+  State<SavedItem> createState() => _SavedItemState();
 }
 
-class _CartItemState extends State<CartItem> {
-  // Remove from cart
-  void removeItemFromCart() {
-    Provider.of<Cart>(context, listen: false).removeItemFromCart(widget.book);
+class _SavedItemState extends State<SavedItem> {
+  // Remove from saved list
+  void removeItemFromSaved() {
+    Provider.of<Cart>(context, listen: false).removeItemFromSaved(widget.book);
   }
 
-  void addItemToSaved(BuildContext context, Book book) {
-    Provider.of<Cart>(context, listen: false).addItemToSaved(widget.book);
+  void addItemToCart(BuildContext context, Book book) {
+    Provider.of<Cart>(context, listen: false).addItemToCart(widget.book);
 
     // Alert the user that book was successfully added
     showDialog(
       context: context,
       builder: (context) => const AlertDialog(
         title: Text('Successfully added!'),
-        content: Text('Check your saved list'),
+        content: Text('Check your cart'),
       ),
     );
   }
@@ -73,7 +73,7 @@ class _CartItemState extends State<CartItem> {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: removeItemFromCart,
+                    onTap: removeItemFromSaved,
                     child: Text(
                       "Remove",
                       style: TextStyle(
@@ -98,9 +98,9 @@ class _CartItemState extends State<CartItem> {
                   gapW12,
 
                   GestureDetector(
-                    onTap: () => addItemToSaved(context, widget.book),
+                    onTap: () => addItemToCart(context, widget.book),
                         child: Text(
-                          "Save for Later",
+                          "Add To Cart",
                           style: TextStyle(
                           color: Colors.amber,
                           fontFamily: GoogleFonts.crimsonPro().fontFamily,
@@ -117,45 +117,3 @@ class _CartItemState extends State<CartItem> {
     );
   }
 }
-
-
-                // Container(
-                //   decoration: BoxDecoration(
-                //     color: Colors.white,
-                //     border: Border.all(
-                //       color: Colors.amber,
-                //       width: 2.0,
-                //     ),
-                //   ),
-                //   width: 100.0,
-                //   height: 40.0,
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(4.0),
-                //     child: Center(
-                //       child: Text(
-                //         "Remove",
-                //         style: TextStyle(
-                //           color: Colors.amber,
-                //           fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-      // ListTile(
-      //   leading: Image.network(
-      //     widget.book.image,
-      //     height: 200,
-      //   ),
-      //   title: Text(widget.book.title),
-      //   subtitle: Text('\$${widget.book.price}'),
-      //   trailing: IconButton(
-      //     icon: const Icon(
-      //       Icons.delete,
-      //       color: Colors.amber,
-      //     ),
-      //     onPressed: removeItemFromCart,
-      //   ),
-      // ),

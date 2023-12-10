@@ -26,6 +26,19 @@ class ProductPage extends StatelessWidget {
     );
   }
 
+  void addBookToSaved(BuildContext context, Book book) {
+    Provider.of<Cart>(context, listen: false).addItemToSaved(book);
+
+    // Alert the user that book was successfully saved
+    showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+        title: Text('Successfully saved!'),
+        content: Text('Check your saved list'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +116,28 @@ class ProductPage extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // TODO: save for later button
+                  // add to saved for later
+                  GestureDetector(
+                    onTap: () => addBookToSaved(context, book),
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 53, 94, 43),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Save for Later",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
