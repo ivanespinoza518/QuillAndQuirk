@@ -99,7 +99,11 @@ class ProductPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  // TODO: save for later button
                 ],
               ),
             ),
