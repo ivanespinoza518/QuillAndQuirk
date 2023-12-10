@@ -5,6 +5,9 @@ import 'dart:convert';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/pages/product_page.dart';
 
+import 'package:quill_and_quirk/components/book_info.dart';
+import 'package:quill_and_quirk/components/book_rating.dart';
+
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
 
@@ -86,8 +89,13 @@ class _SearchPageState extends State<SearchPage> {
                           : Image.network(books[pos].image),
                     ),
                     const SizedBox(height: 10),
-                    Text(books[pos].title),
-                    //subtitle for authors here, etc
+                      BookInfo(
+                        title: books[pos].title,
+                        author: books[pos].author,
+                        price: books[pos].price,
+                        fontSize: 16,
+                      ),
+                      AverageBookRating(book: books[pos], fontSize: 12),
                   ],
                 ),
               ),
