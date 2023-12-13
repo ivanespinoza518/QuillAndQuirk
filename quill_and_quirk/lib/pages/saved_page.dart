@@ -6,7 +6,6 @@ import 'package:quill_and_quirk/components/saved_item.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
 
-
 class SavedPage extends StatefulWidget {
   const SavedPage({super.key});
 
@@ -21,6 +20,33 @@ class _SavedPageState extends State<SavedPage> {
     return Consumer<Cart>(
       builder: (context, value, child) => Column(
         children: [
+          Row(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: screenWidth,
+                height: 35,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.black,
+                      width: 3,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  'Saved List',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 5),
 
           // If page is empty, display message

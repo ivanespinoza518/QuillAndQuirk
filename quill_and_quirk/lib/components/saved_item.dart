@@ -7,6 +7,7 @@ import 'package:quill_and_quirk/constants/app_sizes.dart';
 
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
+import 'package:quill_and_quirk/pages/product_page.dart';
 
 class SavedItem extends StatefulWidget {
   Book book;
@@ -26,7 +27,11 @@ class _SavedItemState extends State<SavedItem> {
   }
 
   void addItemToCart(BuildContext context, Book book) {
+    // Add to Cart
     Provider.of<Cart>(context, listen: false).addItemToCart(widget.book);
+
+    // Remove from Saved List
+    removeItemFromSaved();
 
     // Alert the user that book was successfully added
     showDialog(
@@ -55,19 +60,33 @@ class _SavedItemState extends State<SavedItem> {
         child: TwoColumnLayout(
           startFlex: 1,
           endFlex: 2,
-          startContent: Image.network(
-            widget.book.image,
-            height: 120,
+          startContent: GestureDetector(
+            onTap: () {
+              MaterialPageRoute route = MaterialPageRoute(
+                  builder: (_) => ProductPage(book: widget.book));
+              Navigator.push(context, route);
+            },
+            child: Image.network(
+              widget.book.image,
+              height: 120,
+            ),
           ),
           spacing: Sizes.p24,
           endContent: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              BookInfo(
-                title: widget.book.title,
-                author: widget.book.author,
-                price: widget.book.price,
-                fontSize: 24.0,
+              GestureDetector(
+                onTap: () {
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (_) => ProductPage(book: widget.book));
+                  Navigator.push(context, route);
+                },
+                child: BookInfo(
+                  title: widget.book.title,
+                  author: widget.book.author,
+                  price: widget.book.price,
+                  fontSize: 24.0,
+                ),
               ),
               gapH4,
               Row(
@@ -99,15 +118,15 @@ class _SavedItemState extends State<SavedItem> {
 
                   GestureDetector(
                     onTap: () => addItemToCart(context, widget.book),
-                        child: Text(
-                          "Add To Cart",
-                          style: TextStyle(
-                          color: Colors.amber,
-                          fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                          fontSize: 18,
-                          ),
-                        ),
+                    child: Text(
+                      "Add To Cart",
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 18,
                       ),
+                    ),
+                  ),
                 ],
               ),
             ],

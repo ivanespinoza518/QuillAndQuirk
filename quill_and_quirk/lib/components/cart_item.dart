@@ -7,6 +7,7 @@ import 'package:quill_and_quirk/constants/app_sizes.dart';
 
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
+import 'package:quill_and_quirk/pages/product_page.dart';
 
 class CartItem extends StatefulWidget {
   Book book;
@@ -26,7 +27,11 @@ class _CartItemState extends State<CartItem> {
   }
 
   void addItemToSaved(BuildContext context, Book book) {
+    // Add to Saved List
     Provider.of<Cart>(context, listen: false).addItemToSaved(widget.book);
+
+    // Remove from cart
+    removeItemFromCart();
 
     // Alert the user that book was successfully added
     showDialog(
@@ -55,19 +60,33 @@ class _CartItemState extends State<CartItem> {
         child: TwoColumnLayout(
           startFlex: 1,
           endFlex: 2,
-          startContent: Image.network(
-            widget.book.image,
-            height: 120,
+          startContent: GestureDetector(
+            onTap: () {
+              MaterialPageRoute route = MaterialPageRoute(
+                  builder: (_) => ProductPage(book: widget.book));
+              Navigator.push(context, route);
+            },
+            child: Image.network(
+              widget.book.image,
+              height: 120,
+            ),
           ),
           spacing: Sizes.p24,
           endContent: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              BookInfo(
-                title: widget.book.title,
-                author: widget.book.author,
-                price: widget.book.price,
-                fontSize: 24.0,
+              GestureDetector(
+                onTap: () {
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (_) => ProductPage(book: widget.book));
+                  Navigator.push(context, route);
+                },
+                child: BookInfo(
+                  title: widget.book.title,
+                  author: widget.book.author,
+                  price: widget.book.price,
+                  fontSize: 24.0,
+                ),
               ),
               gapH4,
               Row(
@@ -99,15 +118,15 @@ class _CartItemState extends State<CartItem> {
 
                   GestureDetector(
                     onTap: () => addItemToSaved(context, widget.book),
-                        child: Text(
-                          "Save for Later",
-                          style: TextStyle(
-                          color: Colors.amber,
-                          fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                          fontSize: 18,
-                          ),
-                        ),
+                    child: Text(
+                      "Save for Later",
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontFamily: GoogleFonts.crimsonPro().fontFamily,
+                        fontSize: 18,
                       ),
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -117,45 +136,3 @@ class _CartItemState extends State<CartItem> {
     );
   }
 }
-
-
-                // Container(
-                //   decoration: BoxDecoration(
-                //     color: Colors.white,
-                //     border: Border.all(
-                //       color: Colors.amber,
-                //       width: 2.0,
-                //     ),
-                //   ),
-                //   width: 100.0,
-                //   height: 40.0,
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(4.0),
-                //     child: Center(
-                //       child: Text(
-                //         "Remove",
-                //         style: TextStyle(
-                //           color: Colors.amber,
-                //           fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-      // ListTile(
-      //   leading: Image.network(
-      //     widget.book.image,
-      //     height: 200,
-      //   ),
-      //   title: Text(widget.book.title),
-      //   subtitle: Text('\$${widget.book.price}'),
-      //   trailing: IconButton(
-      //     icon: const Icon(
-      //       Icons.delete,
-      //       color: Colors.amber,
-      //     ),
-      //     onPressed: removeItemFromCart,
-      //   ),
-      // ),

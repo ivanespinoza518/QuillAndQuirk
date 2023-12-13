@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:quill_and_quirk/components/cart_item.dart';
 import 'package:quill_and_quirk/components/checkout_menu.dart';
+import 'package:quill_and_quirk/constants/app_sizes.dart';
 import 'package:quill_and_quirk/models/book.dart';
 import 'package:quill_and_quirk/models/cart.dart';
 
@@ -35,14 +36,14 @@ class _CartPageState extends State<CartPage> {
             children: [
               Container(
                 alignment: Alignment.center,
-                width: screenWidth / 2,
+                width: screenWidth,
                 height: 35,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   border: Border(
                     bottom: BorderSide(
                       color: Colors.black,
-                      width: 2.5,
+                      width: 3,
                     ),
                   ),
                 ),
@@ -56,26 +57,11 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
               ),
-              Container(
-                alignment: Alignment.center,
-                width: screenWidth / 2,
-                height: 35,
-                color: Colors.white,
-                child: Text(
-                  'Saved List',
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    fontFamily: GoogleFonts.crimsonPro().fontFamily,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-              ),
             ],
           ),
 
           // space
-          const SizedBox(height: 5),
+          gapH4,
 
           // If cart is empty, display message
           (value.getUserCart().isEmpty)
