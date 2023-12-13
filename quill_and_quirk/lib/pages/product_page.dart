@@ -54,11 +54,16 @@ class ProductPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: ListView(
                 children: [
-                  // image
-                  Image.network(
-                    book.image,
-                    height: 200,
-                  ),
+                  (book.image == '')
+                      ?
+                      // image not fount
+                      Image.asset('lib/images/image-not-found.jpeg')
+                      :
+                      // image
+                      Image.network(
+                          book.image,
+                          height: 200,
+                        ),
 
                   const SizedBox(height: 25),
 

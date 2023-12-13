@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:quill_and_quirk/components/book_info.dart';
 import 'package:quill_and_quirk/components/book_rating.dart';
 import 'package:quill_and_quirk/pages/product_page.dart';
@@ -31,11 +30,14 @@ class BookTile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // book pic
-              Image.network(
-                book.image,
-                height: 200,
-              ),
+              (book.image == '')
+                  ? Image.asset('lib/images/image-not-found.jpeg')
+                  :
+                  // book pic
+                  Image.network(
+                      book.image,
+                      height: 200,
+                    ),
 
               // Book Info
               Row(

@@ -79,7 +79,7 @@ class WelcomePage extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xffd3a553),
+                        color: const Color(0xffd3a553),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       padding: const EdgeInsets.all(25),

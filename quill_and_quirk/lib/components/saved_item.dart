@@ -10,8 +10,8 @@ import 'package:quill_and_quirk/models/cart.dart';
 import 'package:quill_and_quirk/pages/product_page.dart';
 
 class SavedItem extends StatefulWidget {
-  Book book;
-  SavedItem({
+  final Book book;
+  const SavedItem({
     super.key,
     required this.book,
   });

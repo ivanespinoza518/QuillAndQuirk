@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _pages = _buildPages();
+    List<Widget> pages = _buildPages();
     return Scaffold(
       backgroundColor: Colors.grey[200],
 
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         // Bookstore logo
         title: const Logo(),
       ),
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex],
     );
   }
 }
